@@ -4,7 +4,6 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-
 base_path = "../" if File.basename(__dir__) == "development_app"
 require_relative "#{base_path}lib/decidim/blog_author_petition/version"
 
@@ -13,8 +12,8 @@ DECIDIM_VERSION = Decidim::BlogAuthorPetition.decidim_compatibility_version
 gem "decidim", DECIDIM_VERSION
 gem "decidim-blog_author_petition", path: "."
 
-gem "puma", ">= 4.3"
 gem "bootsnap", "~> 1.4"
+gem "puma", ">= 4.3"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
