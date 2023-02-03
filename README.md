@@ -2,11 +2,6 @@
 
 It enables the author of a petition to manage its actualities.
 
-## Usage
-
-BlogAuthorPetition will be available as a Component for a Participatory
-Space.
-
 ## Installation
 
 Add this line to your application's Gemfile:
