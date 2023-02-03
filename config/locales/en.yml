@@ -1,0 +1,6 @@
+---
+en:
+  decidim:
+    components:
+      blog_author_petition:
+        name: BlogAuthorPetition
