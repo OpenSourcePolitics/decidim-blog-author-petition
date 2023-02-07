@@ -1,0 +1,7 @@
+<!-- insert_bottom '.view-header ~ .row' -->
+<% if allowed_to?(:update, :blogpost, blogpost: post) %>
+    <%= link_to t(".button_edit"), edit_post_path(post), class: "title-action__action button" %>
+<% end %>
+<% if allowed_to?(:destroy, :blogpost, blogpost: post) %>
+    <%= link_to t(".button_destroy"), post_path(post),method: :delete, class: "title-action__action button hollow" %>
+<% end %>

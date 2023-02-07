@@ -11,8 +11,10 @@ DECIDIM_VERSION = Decidim::BlogAuthorPetition.decidim_compatibility_version
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-blog_author_petition", path: "."
+gem "decidim-initiatives", DECIDIM_VERSION
 
 gem "bootsnap", "~> 1.4"
+gem "deface"
 gem "puma", ">= 4.3"
 
 group :development, :test do

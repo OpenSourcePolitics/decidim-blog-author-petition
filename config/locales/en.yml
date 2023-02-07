@@ -1,6 +1,25 @@
 ---
 en:
   decidim:
+    blogs:
+      posts:
+        form:
+          author_id: Author
+          body: Description
+          title: Title
+        edit:
+          back: Back to post
+          button: Update
+          title: Edit post
+        index:
+          new: New post
+        new:
+          back: Back to posts
+          button: Create
+          title: Create new post
+        show:
+          button_destroy: Delete post
+          button_edit: Edit post
     components:
       blog_author_petition:
         name: BlogAuthorPetition
