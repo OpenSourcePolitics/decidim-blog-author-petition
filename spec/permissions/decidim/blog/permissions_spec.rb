@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-describe Decidim::Blogs::Permissions do
+describe Decidim::Blog::Permissions do
   subject { described_class.new(user, permission_action, context).permissions.allowed? }
 
   let(:organization) { create :organization }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Blogs
+  module Blog
     class Permissions < Decidim::DefaultPermissions
       def permissions
         return permission_action unless permission_action.subject == :blogpost
