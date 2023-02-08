@@ -23,6 +23,10 @@ module Decidim
       initializer "BlogAuthorPetition.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end
+
+      initializer "BlogAuthorPetition.disable_endorsements" do
+        Decidim.find_component_manifest(:blogs).settings(:step).attributes[:endorsements_enabled].default = false
+      end
     end
   end
 end
