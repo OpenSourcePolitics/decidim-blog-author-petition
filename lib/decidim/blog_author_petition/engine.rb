@@ -24,7 +24,6 @@ module Decidim
         Decidim::Blogs::Engine.routes.prepend do
           resources :posts, except: [:index, :show]
         end
-
       end
 
       initializer "BlogAuthorPetition.webpacker.assets_path" do
