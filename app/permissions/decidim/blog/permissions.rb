@@ -31,7 +31,7 @@ module Decidim
       end
 
       def can_manage_post
-        current_component.participatory_space.is_a?(Decidim::Initiative) && user == current_component.participatory_space.author
+        current_component&.participatory_space.is_a?(Decidim::Initiative) && user == current_component&.participatory_space.author
       end
     end
   end
