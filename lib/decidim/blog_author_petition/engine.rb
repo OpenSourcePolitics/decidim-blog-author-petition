@@ -20,6 +20,13 @@ module Decidim
         end
       end
 
+      initializer "BlogAuthorPetition.mount_routes" do
+        Decidim::Blogs::Engine.routes.prepend do
+          resources :posts, except: [:index, :show]
+        end
+
+      end
+
       initializer "BlogAuthorPetition.webpacker.assets_path" do
         Decidim.register_assets_path File.expand_path("app/packs", root)
       end

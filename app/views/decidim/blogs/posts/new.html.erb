@@ -7,11 +7,11 @@
     </div>
   </div>
   <div class="columns large-6">
-    <h2 class="section-heading">Créer une actualité</h2>
+    <h2 class="section-heading"> <%= t(".title") %> </h2>
     <div class="card">
       <div class="card__content">
         <%= decidim_form_for(@form, html: { class: "form new_post" }) do |f| %>
-          <%= render partial: "form", object: f, locals: { title: t(".title") } %>
+          <%= render partial: "form", object: f %>
 
           <div class="button--double form-general-submit">
             <%= f.submit t(".button") %>
