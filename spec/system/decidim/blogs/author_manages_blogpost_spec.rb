@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Admin manages posts", type: :system do
+describe "Author manages blog posts", type: :system do
   include_context "with a component"
 
   let(:manifest_name) { "blogs" }
