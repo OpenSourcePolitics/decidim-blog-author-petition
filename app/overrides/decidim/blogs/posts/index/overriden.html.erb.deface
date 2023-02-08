@@ -1,0 +1,5 @@
+<!-- insert_top 'div#most-commented' -->
+
+<% if allowed_to?(:create, :blogpost, blogpost: post) %>
+    <%= link_to t(".new"), new_post_path, class: "button secondary expanded button--icon" %>
+<% end %>
