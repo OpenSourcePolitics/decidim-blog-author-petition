@@ -29,12 +29,17 @@ module Decidim
         )
       end
 
+      def author
+        user_or_group || current_organization
+      end
+
       private
 
       def can_set_author
-        return if user_or_group == current_user
-        return if user_groups.include? user_or_group
-        return if user_or_group == post&.author
+        return if author == current_user.organization
+        return if author == current_user
+        return if user_groups.include? author
+        return if author == post&.author
 
         errors.add(:decidim_author_id, :invalid)
       end
