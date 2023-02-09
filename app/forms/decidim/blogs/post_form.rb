@@ -16,27 +16,21 @@ module Decidim
       validate :can_set_author
 
       def map_model(model)
-        self.decidim_author_id = nil if model.author.is_a? Decidim::Organization
         presenter = PostPresenter.new(model)
         self.title = presenter.title(all_locales: false)
         self.body = presenter.body(all_locales: false)
       end
 
-      def user_or_group
-        @user_or_group ||= Decidim::UserBaseEntity.find_by(
+      def author
+        @author ||= Decidim::UserBaseEntity.find_by(
           organization: current_organization,
           id: decidim_author_id
         )
       end
 
-      def author
-        user_or_group || current_organization
-      end
-
       private
 
       def can_set_author
-        return if author == current_user.organization
         return if author == current_user
         return if user_groups.include? author
         return if author == post&.author

@@ -16,7 +16,7 @@ module Decidim
       let(:current_user) { create :user, organization: current_organization }
       let(:another_user) { create(:user, organization: current_organization) }
       let(:user_group) { create(:user_group, :verified, organization: current_organization) }
-      let(:decidim_author_id) { "" }
+      let(:decidim_author_id) { current_user.id }
       let(:component) { create(:post_component, organization: current_organization) }
       let(:post) { create(:post, component: component, author: author) }
       let(:user_from_another_org) { create(:user) }
@@ -52,12 +52,6 @@ module Decidim
         it { is_expected.to be_invalid }
       end
 
-      context "when organization is specified" do
-        let(:decidim_author_id) { current_organization.id }
-
-        it { is_expected.to be_valid }
-      end
-
       context "when author is a current_user" do
         let(:decidim_author_id) { current_user.id }
 
@@ -65,20 +59,6 @@ module Decidim
 
         it "assigns current_user as author" do
           expect(subject.author).to eq(current_user)
-        end
-      end
-
-      context "when the author belongs to different organization" do
-        let(:decidim_author_id) { user_from_another_org.id }
-
-        it "sets the author to the current_organization" do
-          expect(subject.author).to eq(current_organization)
-        end
-      end
-
-      context "when decidim_author_id is empty" do
-        it "assigns current_organization as author" do
-          expect(subject.author).to eq(current_organization)
         end
       end
 
@@ -104,18 +84,6 @@ module Decidim
             current_organization: current_organization,
             current_user: current_user
           )
-        end
-
-        let(:author) { current_organization }
-
-        context "when author is an organization" do
-          it "assigns current_organization.id as decidim_author_id" do
-            expect(subject.decidim_author_id).to be_nil
-          end
-
-          it "assigns current_organization as author" do
-            expect(subject.author).to eq(current_organization)
-          end
         end
 
         context "when the author is a group" do

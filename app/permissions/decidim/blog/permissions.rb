@@ -6,12 +6,17 @@ module Decidim
       def permissions
         return permission_action unless permission_action.subject == :blogpost
 
-        if permission_action.action.in?([:update, :create, :destroy])
-          toggle_allow(can_manage_post)
-          return permission_action
-        end
-
         if permission_action.scope == :public
+          if permission_action.action.in?([:update, :destroy])
+            toggle_allow(can_manage_post)
+            return permission_action
+          end
+
+          if permission_action.action == :create
+            toggle_allow(can_create_post)
+            return permission_action
+          end
+
           allow!
           return permission_action
         end
@@ -30,8 +35,12 @@ module Decidim
         @current_component ||= context.fetch(:current_component, nil)
       end
 
-      def can_manage_post
+      def can_create_post
         current_component&.participatory_space.is_a?(Decidim::Initiative) && user == current_component&.participatory_space&.author
+      end
+
+      def can_manage_post
+        can_create_post && post.author == user
       end
     end
   end
