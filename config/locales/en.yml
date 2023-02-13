@@ -13,6 +13,8 @@ en:
           title: Edit post
         index:
           new: New post
+          no_post_warning: There are no published posts yet.
+          validating_warning: You can't create posts yet because your petition is still being validated.
         new:
           back: Back to posts
           button: Create

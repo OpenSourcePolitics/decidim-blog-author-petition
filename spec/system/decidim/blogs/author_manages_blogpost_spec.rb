@@ -30,6 +30,15 @@ describe "Author manages blog posts", type: :system do
       expect(Decidim::Blogs::Post.last.author).to eq(user)
     end
 
+    context "when no posts are published" do
+      let!(:post1) { nil }
+      let!(:post2) { nil }
+
+      it "shows a warning message" do
+        expect(page).to have_content("There are no published posts yet.")
+      end
+    end
+
     context "when user is the author of the post" do
       before do
         login_as(user, scope: :user)
@@ -96,6 +105,22 @@ describe "Author manages blog posts", type: :system do
 
       expect(page).not_to have_content("Edit post")
       expect(page).not_to have_content("Destroy post")
+    end
+  end
+
+  context "when the initiative is in technical validation" do
+    before do
+      login_as(user, scope: :user)
+      participatory_space.update!(published_at: nil, state: "validating")
+      visit_component
+    end
+
+    it "doesn't enable to create" do
+      expect(page).not_to have_content("New post")
+    end
+
+    it "shows warning message" do
+      expect(page).to have_content("You can't create posts yet because your petition is still being validated.")
     end
   end
 end
