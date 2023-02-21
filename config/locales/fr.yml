@@ -1,0 +1,27 @@
+---
+fr:
+  decidim:
+    blogs:
+      posts:
+        form:
+          author_id: Auteur
+          body: Description
+          title: Titre
+        edit:
+          back: Retour à l'article
+          button: Mettre à jour
+          title: Editer l'article
+        index:
+          new: Nouvel article
+          no_post_warning: Il n'y a pas encore d'article publié.
+          validating_warning: Vous ne pouvez pas créer d'article car votre pétition est en cours de validation.
+        new:
+          back: Retour à l'article
+          button: Créer
+          title: Créer un nouvel article
+        show:
+          button_destroy: Supprimer
+          button_edit: Modifier
+    components:
+      blog_author_petition:
+        name: BlogAuthorPetition
