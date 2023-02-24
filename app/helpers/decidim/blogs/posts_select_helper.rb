@@ -11,16 +11,21 @@ module Decidim
         select_options = [
           [current_user.name, current_user.id]
         ]
-        current_user_groups = Decidim::UserGroups::ManageableUserGroups.for(current_user).verified
 
-        select_options += current_user_groups.map { |g| [g.name, g.id] } if current_organization.user_groups_enabled? && current_user_groups.any?
+        select_options += user_groups
         select_options << [form.object.author.name, form.object.author.id] unless !form.object.author || select_options.pluck(1).include?(form.object.author.id)
 
-        if select_options.size > 1
-          form.select(name, select_options)
-        else
-          form.hidden_field(name, value: select_options.first[1])
-        end
+        return form.select(name, select_options) if select_options.size > 1
+
+        form.hidden_field(name, value: select_options.first[1])
+      end
+
+      private
+
+      def user_groups
+        return [] unless current_organization.user_groups_enabled?
+
+        Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.map { |user_g| [user_g.name, user_g.id] }
       end
     end
   end
