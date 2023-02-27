@@ -13,6 +13,8 @@ fr:
           title: Editer l'article
         index:
           new: Nouvel article
+          no_post_warning: Il n'y a pas encore d'article publié.
+          validating_warning: Vous ne pouvez pas créer d'article car votre pétition est en cours de validation.
         new:
           back: Retour à l'article
           button: Créer
