@@ -5,7 +5,7 @@ module PostsControllerExtends
 
   included do
     helper Decidim::UserGroupHelper
-    helper Decidim::Blogs::Admin::PostsHelper
+    helper Decidim::Blogs::PostsSelectHelper
     include Decidim::FormFactory
 
     def new
